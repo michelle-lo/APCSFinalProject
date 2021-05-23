@@ -1,6 +1,7 @@
 # APCSFinalProject
 
-Group Name:
+Group Name: The Data Duo
+
 Group Members: Michelle Lo and Reshmi Anwar
 
 Prototype Link: https://docs.google.com/document/d/1DrXI50jfh32Y6TNM1hwQLIokbTJrvmXXLo5JlqfxhTo/edit?usp=sharing
