@@ -1,3 +1,11 @@
+PImage backgroundImage;
+
 void setup(){
-  size(1000, 800);
+  size(576, 360);
+  backgroundImage = loadImage("space.jpg");
+  backgroundImage.loadPixels();
+}
+
+void draw(){
+  background(backgroundImage);
 }
