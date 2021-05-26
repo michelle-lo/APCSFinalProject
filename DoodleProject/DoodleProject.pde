@@ -10,6 +10,7 @@ float xf;
 float yf;
 float[] linePts = new float[4]; 
 int symb;
+ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 //setup() loads the background and creates the protaganist object.
 void setup(){
@@ -26,6 +27,9 @@ void setup(){
 void draw(){
   background(backgroundImage);
   cat.display();
+  for (int i = 0; i < enemies.size(); i++) {
+    enemies.get(i).display();
+  }
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
   
@@ -75,10 +79,15 @@ void mouseReleased() {
     linePts[2] = xf;
     linePts[3] = yf;
     symb = -1;
-  }
+    symbolize();
+
+  } else { //creates new enemy at mouse location (for testing purposes)
+    Enemy test = new Enemy(mouseX, mouseY);
+    enemies.add(test);
+  } 
   
   //test
-  symbolize();
+  
 }
 
 //symbolize() recognizes the symbol based on the slope of the line created.

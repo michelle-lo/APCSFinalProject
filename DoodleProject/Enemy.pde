@@ -7,7 +7,9 @@ class Enemy {
   float charHeight;
   color charColor;
   Queue<Integer> pattern = new LinkedList();
-
+  int maxSize;
+  int patternLen;
+  boolean isDead;
   
   
   //constructor
@@ -16,7 +18,10 @@ class Enemy {
     yPos = height / 2 ; //temp value
     charWidth = 75; //temporary values
     charHeight = 75; 
-
+    maxSize = 7; //subject to change
+    patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
+    pattern();
+    isDead = false;
   }
   
   Enemy(float x, float y) {
@@ -24,6 +29,27 @@ class Enemy {
     yPos = y;
     charWidth = 75; //temporary values
     charHeight = 75; 
-
+    maxSize = 7; 
+    patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
+    pattern();
+    isDead = false;
   }
+  
+  //adds a random assortment of symbols to enemy's pattern
+  void pattern() {
+    for (int i = 0; i < patternLen; i++) {
+      pattern.add((int) (Math.random() * 4));
+    }
+  }
+  
+  //display() displays enemies
+  void display() {
+    ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep enemy
+    String str = "";
+    for (int symbol : pattern) {
+      str += symbol + " ";
+    }
+    text(str, xPos, yPos - 50);
+  }
+ 
 }
