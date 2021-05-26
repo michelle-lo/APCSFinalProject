@@ -15,7 +15,6 @@ Development Log
 
 Reshmi: Created repo and initialized main files (DoodleProject and Protaganist), set up background and canvas formatting, displayed number of lives on the top left of the canvas.
 
-Michelle:
-
+Michelle: Created repo. Set up the basic functions for the Protagonist object (e.g Display() method).
 
 5/26/21:
