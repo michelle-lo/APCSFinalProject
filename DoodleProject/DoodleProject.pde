@@ -3,12 +3,13 @@ PImage backgroundImage;
 Protaganist cat; 
 int health = 5;
 
-
 //coordinates of line drawn by player
 float xi;
 float yi;
 float xf;
 float yf;
+float[] linePts = new float[4]; 
+int symb;
 
 //setup() loads the background and creates the protaganist object.
 void setup(){
@@ -19,7 +20,7 @@ void setup(){
   image(backgroundImage, 0, 0);
   backgroundImage.loadPixels();
   cat = new Protaganist();
- 
+  symb = -1; //-1 indicates no symbol
 }
 
 void draw(){
@@ -68,6 +69,45 @@ void mouseReleased() {
     stroke(0);
     xf = mouseX;
     yf = mouseY;
-    println("xf: " + xf + " yf: " + yf); 
+    println("xf: " + xf + " yf: " + yf);
+    linePts[0] = xi;
+    linePts[1] = yi;
+    linePts[2] = xf;
+    linePts[3] = yf;
+    symb = -1;
+  }
+  
+  //test
+  symbolize();
+}
+
+//symbolize() recognizes the symbol based on the slope of the line created.
+void symbolize() {
+  String test = "len: "; 
+  float len = dist(linePts[0], linePts[1], linePts[2], linePts[3]);
+  test += len;
+  if (len >= 50) {
+    float slope = (linePts[3] - linePts[1]) / (linePts[2] - linePts[0]);
+    test += " slope: " + slope;
+    if (abs(slope) >= 5) {
+      println(test += " 0 (up)");
+      symb = 0;
+    } else if (abs(slope) <= 0.15) {
+      println(test += " 1 (horizontal)");
+      symb = 1;
+    } else if (slope <= -0.7 && slope >= -3.15) {
+      println(test += " 2 (positive slope)");
+      symb = 2;
+    } else if (slope >= 0.7 && slope <= 3.15) {
+      println(test += " 3 (negative slope)");
+      symb = 3;
+    } else {
+      println(test += " Not valid symbol");
+      symb = -1;
+    }
+    
+  } else {
+    println(test += " too short.");
+    symb = -1;
   }
 }
