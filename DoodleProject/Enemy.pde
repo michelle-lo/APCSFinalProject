@@ -51,5 +51,20 @@ class Enemy {
     }
     text(str, xPos, yPos - 50);
   }
+  
+  boolean isDead() {
+    return isDead;
+  }
+  
+  //getAttacked() gets rid of the first symbol of an enemy's pattern if the correct symbol is made by the player
+  void getAttacked(int symbol) {
+    if (pattern.size() == 1 && pattern.peek() == symbol) { //removes the enemy if no more symbols 
+      pattern.remove();
+      isDead = true;
+    } else if (pattern.peek() == symbol) {
+      pattern.remove();
+    } 
+    
+  }
  
 }

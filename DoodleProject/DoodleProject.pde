@@ -27,8 +27,13 @@ void setup(){
 void draw(){
   background(backgroundImage);
   cat.display();
+  //displays all enemies unless dead
   for (int i = 0; i < enemies.size(); i++) {
-    enemies.get(i).display();
+    if (! enemies.get(i).isDead()) {
+      enemies.get(i).display();
+    } else {
+      enemies.remove(i);
+    }
   }
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
@@ -78,15 +83,19 @@ void mouseReleased() {
     linePts[1] = yi;
     linePts[2] = xf;
     linePts[3] = yf;
+    for (int i = 0; i < enemies.size(); i++) {
+      symbolize();
+      enemies.get(i).getAttacked(symb);
+    }
     symb = -1;
-    symbolize();
+    //symbolize();
 
   } else { //creates new enemy at mouse location (for testing purposes)
     Enemy test = new Enemy(mouseX, mouseY);
     enemies.add(test);
   } 
   
-  //test
+  
   
 }
 
