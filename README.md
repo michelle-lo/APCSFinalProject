@@ -12,7 +12,10 @@ Our group project will utilize processing to create an interactive game for user
 Development Log:
 
 5/24/21:
+
 Reshmi: Created repo and initialized main files (DoodleProject and Protaganist), set up background and canvas formatting, displayed number of lives on the top left of the canvas.
+
 Michelle:
+
 
 5/26/21:
