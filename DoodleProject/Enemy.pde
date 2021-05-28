@@ -10,6 +10,7 @@ class Enemy {
   int maxSize;
   int patternLen;
   boolean isDead;
+  int numOfSymbols = 6;
   
   
   //constructor
@@ -38,7 +39,7 @@ class Enemy {
   //adds a random assortment of symbols to enemy's pattern
   void pattern() {
     for (int i = 0; i < patternLen; i++) {
-      pattern.add((int) (Math.random() * 4));
+      pattern.add((int) (Math.random() * numOfSymbols));
     }
   }
   
@@ -47,7 +48,21 @@ class Enemy {
     ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep enemy
     String str = "";
     for (int symbol : pattern) {
-      str += symbol + " ";
+      String ch = "";
+      if (symbol == 0) {
+        ch = "|";
+      } else if (symbol == 1) {
+        ch = "-";
+      } else if (symbol == 2) {
+        ch = "/";
+      } else if (symbol == 3) {
+        ch = "\\";
+      } else if (symbol == 4) {
+        ch = "\\/";
+      } else {
+        ch = "/\\";
+      }
+      str += ch + " ";
     }
     text(str, xPos, yPos - 50);
   }
