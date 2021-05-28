@@ -58,9 +58,9 @@ class Enemy {
       } else if (symbol == 3) {
         ch = "\\";
       } else if (symbol == 4) {
-        ch = "\\/";
+        ch = "v";
       } else {
-        ch = "/\\";
+        ch = "^";
       }
       str += ch + " ";
     }
