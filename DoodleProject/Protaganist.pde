@@ -17,4 +17,12 @@ class Protaganist {
   void display() {
     ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep protag
   }
+  
+  float getX() {
+    return xPos;
+  }
+  
+  float getY() {
+    return yPos;
+  }
 }

@@ -40,6 +40,11 @@ void draw(){
       enemies.remove(i);
     }
   }
+  
+  for (Enemy e : enemies) {
+    e.move();
+  }
+  
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
   
