@@ -25,4 +25,12 @@ class Protaganist {
   float getY() {
     return yPos;
   }
+  
+  float getWidth() {
+    return charWidth;
+  }
+  
+  float getHeight() {
+    return charHeight;
+  }
 }
