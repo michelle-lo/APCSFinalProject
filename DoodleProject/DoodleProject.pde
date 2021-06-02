@@ -1,7 +1,7 @@
 import java.util.*;
 PImage backgroundImage;
 Protaganist cat; 
-int health = 5;
+static int health = 5;
 
 //coordinates of line drawn by player
 float xi;
@@ -229,4 +229,9 @@ void keyReleased() {
       symb = -1;
     }
   }
+}
+
+//reduces number of lives when protaganist is touched by an enemy
+static void getAttacked() {
+  health--;
 }

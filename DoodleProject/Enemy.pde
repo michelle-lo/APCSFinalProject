@@ -108,6 +108,7 @@ class Enemy {
       dx *= -4;
       dy *= -4;
       retreating = true;
+      DoodleProject.getAttacked();
     } else if (retreating && dist(xPos, yPos, test.getX(), test.getY()) >= 400) {
       dx *= - 0.25;
       dy *= - 0.25;
