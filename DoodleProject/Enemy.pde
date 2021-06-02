@@ -1,4 +1,7 @@
 import java.util.*;
+//restrict the bound for the speed at which the enemy moves
+
+
 
 class Enemy {
   float xPos;
@@ -15,7 +18,7 @@ class Enemy {
   float dy = random(6)-3;
   float v, a, t;
   Protaganist test = new Protaganist();
-  boolean retreating = false;
+  boolean retreating = false; 
   
   //constructor
   Enemy() {
@@ -102,7 +105,13 @@ class Enemy {
       dy *= -1;
       retreating = true;
       println(retreating);
-    } /*else if (retreating && dist(xPos, yPos, test.getX(), test.getY()) <= 100) {
+    } 
+    
+    //either have collision detection with the edge of the screen 
+    //or move backwards with each touch (certain distance or ticks)
+    //this depends on the number of enemeies at a given time/what we decide on
+    
+    /*else if (retreating && dist(xPos, yPos, test.getX(), test.getY()) <= 100) {
       println("hello?");
       dx *= -1;
       dy *= -1;
