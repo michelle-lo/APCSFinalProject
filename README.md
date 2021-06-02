@@ -1,7 +1,7 @@
 # APCSFinalProject
 
 Group Name: The Data Duo
-
+/Users/michelle/Desktop/APCS/APCSFinalProject/README.md
 Group Members: Michelle Lo and Reshmi Anwar
 
 Prototype Link: https://docs.google.com/document/d/1DrXI50jfh32Y6TNM1hwQLIokbTJrvmXXLo5JlqfxhTo/edit?usp=sharing
@@ -18,3 +18,19 @@ Reshmi: Created repo and initialized main files (DoodleProject and Protaganist),
 Michelle: Created repo. Set up the basic functions for the Protagonist object (e.g Display() method).
 
 5/26/21:
+Reshmi:
+
+Michelle: Added functionality for the player to draw symbols anywhere on the screen. The symbol will then be analyzed for its type and will kill any enemy with that corresponding symbol. 
+
+5/28/21:
+
+Reshmi:
+
+Michelle: Added two new symbols for the player to create: the carrot and the downwards carrot.
+
+6/2/21:
+
+Reshmi:
+
+Michelle:
+
