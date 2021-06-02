@@ -97,6 +97,24 @@ class Enemy {
   void move() {
     xPos += dx;
     yPos += dy;
+    if (retreating == false && dist(xPos, yPos, test.getX(), test.getY()) <= charWidth) {
+      dx *= -1;
+      dy *= -1;
+      retreating = true;
+      println(retreating);
+    } /*else if (retreating && dist(xPos, yPos, test.getX(), test.getY()) <= 100) {
+      println("hello?");
+      dx *= -1;
+      dy *= -1;
+      retreating = false;
+    } else {
+      //xPos += dx;
+      //yPos += dy;
+    }
+    */
+    
+    //if (xPos >= width - charWidth || xPos <= charWidth) dx *= -1;
+    //if (yPos >= height - charWidth || yPos <= charWidth) dy *= -1;
   }
  
 }
