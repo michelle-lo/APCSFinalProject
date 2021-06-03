@@ -31,25 +31,17 @@ void setup(){
 }
 
 void draw(){
-  background(backgroundImage);
-  cat.display();
-  //displays all enemies unless dead
-  for (int i = 0; i < enemies.size(); i++) {
-    if (! enemies.get(i).isDead()) {
-      enemies.get(i).display();
-    } else {
-      enemies.remove(i);
-    }
-  }
-  
-  for (Enemy e : enemies) {
-    e.move();
-  }
-  
+  background(backgroundImage); 
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
-  
-  //player can draw lines anywhere on the screen
+  cat.display();
+  enemyDisplay();
+  drawLine();
+  endScreen();
+}
+
+//player can draw lines anywhere on the screen
+void drawLine() {
   if (mousePressed && mouseButton == LEFT && keyPressed && keyCode == 16) { 
     stroke(225);
     strokeWeight(10);
@@ -69,8 +61,22 @@ void draw(){
     xf2 = mouseX;
     yf2 = mouseY;
   }
-  
-  //switches to lose background
+}
+
+//displays all enemies unless dead
+void enemyDisplay() {
+  for (int i = 0; i < enemies.size(); i++) {
+    enemies.get(i).move();
+    if (! enemies.get(i).isDead()) {
+      enemies.get(i).display();
+    } else {
+      enemies.remove(i);
+    }
+  }
+}
+
+//switches to lose background
+void endScreen() {
   if (health <= 0){
     size(1000, 800);
     backgroundImage = loadImage("croppedGameOver.jpg");
@@ -245,6 +251,7 @@ void symbolize() {
   }
   notLine = false; 
 }
+
 
 void keyReleased() {
   if (keyCode == 16) {
