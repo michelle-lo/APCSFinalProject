@@ -15,7 +15,8 @@ class Protaganist {
   
   //display() summons the protag on the screen.
   void display() {
-    ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep protag
+    image(catCharacter, xPos, yPos, charWidth, charHeight);
+    //ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep protag
   }
   
   float getX() {

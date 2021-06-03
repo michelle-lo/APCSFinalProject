@@ -1,7 +1,4 @@
 import java.util.*;
-//restrict the bound for the speed at which the enemy moves
-
-
 
 class Enemy {
   float xPos;
@@ -60,7 +57,8 @@ class Enemy {
   
   //display() displays enemies
   void display() {
-    ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep enemy
+    image(galaxyCat, xPos, yPos, charWidth, charHeight);
+    //ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep enemy
     String str = "";
     for (int symbol : pattern) {
       String ch = "";
