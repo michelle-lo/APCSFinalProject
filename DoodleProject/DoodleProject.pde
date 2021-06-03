@@ -25,6 +25,7 @@ void setup(){
   backgroundImage = loadImage("space.jpg");
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
+  imageMode(CENTER);
   image(backgroundImage, 0, 0);
   backgroundImage.resize(1000, 800);
   image(backgroundImage, 0, 0);
