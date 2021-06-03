@@ -18,7 +18,7 @@ class Enemy {
   float dy = random(6)-3;
   float v, a, t;
   Protaganist test = new Protaganist();
-  boolean retreating = false; 
+  boolean retreating = false;
   
   //constructor
   Enemy() {
@@ -97,13 +97,13 @@ class Enemy {
     
   }
   
+  //move() moves the enemy towards the protag. It bounces off the protag when it touches it but comes back. 
   void move() {
     xPos += dx;
     yPos += dy;
     //either have collision detection with the edge of the screen 
     //or move backwards with each touch (certain distance or ticks)
     //this depends on the number of enemeies at a given time/what we decide on
-
     if (retreating == false && dist(xPos, yPos, test.getX(), test.getY()) < test.getWidth() / 2 + charWidth / 2) {
       dx *= -4;
       dy *= -4;
@@ -114,8 +114,6 @@ class Enemy {
       dy *= - 0.25;
       retreating = false;
     }
-    
- 
     //if (xPos >= width - charWidth || xPos <= charWidth) dx *= -1;
     //if (yPos >= height - charWidth || yPos <= charWidth) dy *= -1;
   }

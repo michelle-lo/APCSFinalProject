@@ -70,6 +70,31 @@ void draw(){
   }
 }
 
+//spawn() spawns number of enemies randomly on the sides of the screen. 
+void spawn(int numEnemies) {
+  //int numEnemies = 10;
+  for (int i = 0; i < numEnemies; i++) {
+    float chance = (int) (Math.random() * 4) + 1;
+    float enemyX = 0;
+    float enemyY = 0;
+    if (chance == 1) { //top
+      enemyX = (float) Math.random() * (width + 1); 
+      enemyY = 0;
+    } else if (chance == 2) { //bottom
+      enemyX = (float) Math.random() * (width + 1); 
+      enemyY = height;
+    } else if (chance == 3) { //left
+      enemyX = 0;
+      enemyY = (float) Math.random() * (height + 1);
+    } else {
+      enemyX = width;
+      enemyY = (float) Math.random() * (height + 1);
+    }
+    Enemy e = new Enemy(enemyX, enemyY);
+    enemies.add(e);
+  }
+}
+
 void gameOverScreen(){
 }
 
@@ -234,4 +259,16 @@ void keyReleased() {
 //reduces number of lives when protaganist is touched by an enemy
 static void getAttacked() {
   health--;
+}
+
+void keyPressed() {
+  //spawns 10 enemies
+  if (keyCode == 83) { //s
+    spawn(10);
+  }
+  //clears all enemies
+  if (keyCode == 32) { //space
+    enemies.clear();
+  }
+  println(keyCode);
 }
