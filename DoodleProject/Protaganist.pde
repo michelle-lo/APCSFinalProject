@@ -9,7 +9,7 @@ class Protaganist {
   Protaganist() {
     xPos = width / 2;
     yPos = height / 2;
-    charWidth = 100; //temporary values
+    charWidth = 150; //temporary values
     charHeight = 100; 
   }
   

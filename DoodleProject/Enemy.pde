@@ -21,7 +21,7 @@ class Enemy {
   Enemy() {
     xPos = width / 2 + 100; //temp value
     yPos = height / 2 ; //temp value
-    charWidth = 75; //temporary values
+    charWidth = 125; //temporary values
     charHeight = 75; 
     maxSize = 7; //subject to change
     patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
