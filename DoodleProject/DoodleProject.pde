@@ -84,10 +84,9 @@ void endScreen() {
   if (health <= 0){
     size(1000, 800);
     backgroundImage = loadImage("croppedGameOver.jpg");
-    image(backgroundImage, 0, 0);
     backgroundImage.resize(1000, 800);
-    image(backgroundImage, 0, 0);
     backgroundImage.loadPixels();
+    background(backgroundImage);
   }
 }
 
@@ -284,7 +283,7 @@ static void getAttacked() {
 void keyPressed() {
   //spawns 10 enemies
   if (keyCode == 83) { //s
-    spawn(10);
+    spawn(5);
   }
   //clears all enemies
   if (keyCode == 32) { //space
