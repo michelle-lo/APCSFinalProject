@@ -20,8 +20,8 @@ boolean notLine = false;
 //setup() loads the background and creates the protaganist object.
 void setup(){
   size(1000, 800);
-  //backgroundImage = loadImage("space.jpg");
-  backgroundImage = loadImage("croppedGameOver.jpg");
+  backgroundImage = loadImage("space.jpg");
+  //backgroundImage = loadImage("croppedGameOver.jpg");
   image(backgroundImage, 0, 0);
   backgroundImage.resize(1000, 800);
   image(backgroundImage, 0, 0);
@@ -69,6 +69,16 @@ void draw(){
     xf2 = mouseX;
     yf2 = mouseY;
   }
+  
+  //switches to lose background
+  if (health <= 0){
+    size(1000, 800);
+    backgroundImage = loadImage("croppedGameOver.jpg");
+    image(backgroundImage, 0, 0);
+    backgroundImage.resize(1000, 800);
+    image(backgroundImage, 0, 0);
+    backgroundImage.loadPixels();
+  }
 }
 
 //spawn() spawns number of enemies randomly on the sides of the screen. 
@@ -96,8 +106,6 @@ void spawn(int numEnemies) {
   }
 }
 
-void gameOverScreen(){
-}
 
 //mouseDragged() changes the end point coordinates of the line when the mouse is moving
 void mouseDragged() { 
