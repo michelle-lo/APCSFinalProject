@@ -3,8 +3,8 @@ import java.util.*;
 class Enemy {
   float xPos;
   float yPos;
-  float charWidth;
-  float charHeight;
+  float charWidth = 120;
+  float charHeight = 75;
   color charColor;
   Queue<Integer> pattern = new LinkedList();
   int maxSize;
@@ -21,8 +21,8 @@ class Enemy {
   Enemy() {
     xPos = width / 2 + 100; //temp value
     yPos = height / 2 ; //temp value
-    charWidth = 125; //temporary values
-    charHeight = 75; 
+    //charWidth = 120; //temporary values //125
+    //charHeight = 75; //75 
     maxSize = 7; //subject to change
     patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
     pattern();
@@ -36,8 +36,8 @@ class Enemy {
   Enemy(float x, float y) {
     xPos = x;
     yPos = y;
-    charWidth = 75; //temporary values
-    charHeight = 75; 
+    //charWidth = 120; //temporary values
+    //charHeight = 75; 
     maxSize = 7; 
     patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
     pattern();
@@ -98,7 +98,7 @@ class Enemy {
   //move() moves the enemy towards the protag. It bounces off the protag when it touches it but comes back. 
   void move() {
     xPos += dx;
-    yPos += dy;
+    yPos += dy; //make sure to account for height
     if (retreating == false && dist(xPos, yPos, test.getX(), test.getY()) < test.getWidth() / 2 + charWidth / 2) {
       dx *= -4;
       dy *= -4;
@@ -109,7 +109,6 @@ class Enemy {
       dy *= - 0.25;
       retreating = false;
     }
-    
   }
  
 }

@@ -285,9 +285,16 @@ void keyPressed() {
   if (keyCode == 83) { //s
     spawn(5);
   }
+  
   //clears all enemies
   if (keyCode == 32) { //space
     enemies.clear();
   }
+  
+  //to cheat;))
+  if (keyCode == 72) { //h
+    health = 300;  
+  }
+  
   println(keyCode);
 }
