@@ -44,8 +44,8 @@ void draw(){
   textSize(25);
   text("Total Dead: " + totalDead, 20, 60);
   
-  //stage1
-  if (totalDead <= 7) {
+  //stage 1
+  if (totalDead < 10) { //total number of enemies needed to be defeated before advancing is 10
     text("STAGE 1", width/2, 40);
     float upper = 2; //this is the upper bound for the velocity 
     float lower = -1; //this is the lower bound for the velocity
@@ -56,11 +56,20 @@ void draw(){
       isStart = false;
     }
     
-    if (totalDead < 6 && enemies.size() < 2) {
+    if (totalDead < 9 && enemies.size() < 2) { 
       spawn(1, upper, lower, maxPatternLen);
     } 
-  }
+  } 
   
+  //stage 2
+  if (totalDead >= 10 && totalDead < 21) { //feel free to adjust the numbers 
+    text("STAGE 2", width/2, 40);
+  } 
+  
+  //stage 3
+  if (totalDead >= 21 && totalDead < 30) {
+    text("STAGE 3", width/2, 40);
+  } 
   cat.display();
   enemyDisplay();
   drawLine();
@@ -319,10 +328,17 @@ void keyPressed() {
     enemies.clear();
   }
   
-  //to cheat;))
+  //to regain 300 health
   if (keyCode == 72) { //h
     health = 300;  
   }
+  
+  //increases totalDead counter
+  if (keyCode == 68) { //d
+    totalDead++;
+  }
+  
+  
   
   println(keyCode);
 }
