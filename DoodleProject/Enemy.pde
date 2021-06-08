@@ -99,7 +99,8 @@ class Enemy {
   void move() {
     xPos += dx;
     yPos += dy; //make sure to account for height
-    if (retreating == false && dist(xPos, yPos, test.getX(), test.getY()) < test.getWidth() / 2 + charWidth / 2) {
+    if (retreating == false &&
+        isTouching(xPos, yPos, charWidth, charHeight, test.getX(), test.getY(), test.getHeight(), test.getWidth())) {
       dx *= -4;
       dy *= -4;
       retreating = true;
@@ -110,5 +111,17 @@ class Enemy {
       retreating = false;
     }
   }
+  
+  boolean isTouching(float thisX, float thisY, float thisW, float thisH, float protagX, float protagY, float protagH, float protagW) {
+    if (thisX + thisW >= protagX &&    
+      thisX + 25 <= protagX + protagW &&    
+      thisY + thisH >= protagY &&    
+      thisY + 25 <= protagY + protagH) {  
+        return true;
+    }
+    return false;
+  }
+  
+  
  
 }

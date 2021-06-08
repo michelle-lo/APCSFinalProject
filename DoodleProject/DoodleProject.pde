@@ -15,9 +15,11 @@ float yf2;
 float[] linePts = new float[4]; 
 float[] linePts2 = new float[6];
 int symb;
+
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 boolean alrPressed = false;
 boolean notLine = false;
+int totalDead;
 
 //setup() loads the background and creates the protaganist object.
 void setup(){
@@ -38,11 +40,15 @@ void draw(){
   background(backgroundImage); 
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
+  
+  text("Total Dead: " + totalDead, 20, 60);
   cat.display();
   enemyDisplay();
   drawLine();
   endScreen();
 }
+
+
 
 //player can draw lines anywhere on the screen
 void drawLine() {
@@ -74,6 +80,7 @@ void enemyDisplay() {
     if (! enemies.get(i).isDead()) {
       enemies.get(i).display();
     } else {
+      totalDead++;
       enemies.remove(i);
     }
   }
