@@ -21,6 +21,8 @@ boolean alrPressed = false;
 boolean notLine = false;
 int totalDead;
 
+boolean isStart = true;
+
 //setup() loads the background and creates the protaganist object.
 void setup(){
   size(1000, 800);
@@ -40,13 +42,27 @@ void draw(){
   background(backgroundImage); 
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
-  
   text("Total Dead: " + totalDead, 20, 60);
+  //stage1
+  if (totalDead <= 7) {
+    //at the start, spawn 2 enemies
+    if (isStart && (totalDead == 0) && (enemies.size() == 0)) {
+      spawn(2);
+      isStart = false;
+    }
+    
+    if (totalDead < 6 && enemies.size() < 2) {
+      spawn(1);
+    } 
+  }
+  
   cat.display();
   enemyDisplay();
   drawLine();
   endScreen();
 }
+
+
 
 
 
