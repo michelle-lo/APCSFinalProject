@@ -43,16 +43,21 @@ void draw(){
   text("Lives Left: " + health, 20, 40); 
   textSize(25);
   text("Total Dead: " + totalDead, 20, 60);
+  
   //stage1
   if (totalDead <= 7) {
+    text("STAGE 1", width/2, 40);
+    float upper = 2; //this is the upper bound for the velocity 
+    float lower = -1; //this is the lower bound for the velocity
+    float maxPatternLen = 3; //this is the max pattern length 
     //at the start, spawn 2 enemies
     if (isStart && (totalDead == 0) && (enemies.size() == 0)) {
-      spawn(2);
+      spawn(2, upper, lower, maxPatternLen);
       isStart = false;
     }
     
     if (totalDead < 6 && enemies.size() < 2) {
-      spawn(1);
+      spawn(1, upper, lower, maxPatternLen);
     } 
   }
   
@@ -114,7 +119,7 @@ void endScreen() {
 }
 
 //spawn() spawns number of enemies randomly on the sides of the screen. 
-void spawn(int numEnemies) {
+void spawn(int numEnemies, float upper, float lower, float maxPatternLen) {
   //int numEnemies = 10;
   for (int i = 0; i < numEnemies; i++) {
     float chance = (int) (Math.random() * 4) + 1;
@@ -133,7 +138,7 @@ void spawn(int numEnemies) {
       enemyX = width;
       enemyY = (float) Math.random() * (height + 1);
     }
-    Enemy e = new Enemy(enemyX, enemyY);
+    Enemy e = new Enemy(enemyX, enemyY, upper, lower, maxPatternLen);
     enemies.add(e);
   }
 }
@@ -190,7 +195,7 @@ void mouseReleased() {
     }
     symb = -1;
   } else { //creates new enemy at mouse location (for testing purposes)
-    Enemy test = new Enemy(mouseX, mouseY);
+    Enemy test = new Enemy(mouseX, mouseY, 3, -3, 7);
     enemies.add(test);
   } 
 }
@@ -306,7 +311,7 @@ static void getAttacked() {
 void keyPressed() {
   //spawns 10 enemies
   if (keyCode == 83) { //s
-    spawn(5);
+    spawn(5, 3, -3, 7);
   }
   
   //clears all enemies

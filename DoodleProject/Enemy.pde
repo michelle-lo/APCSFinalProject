@@ -11,8 +11,8 @@ class Enemy {
   int patternLen;
   boolean isDead;
   int numOfSymbols = 6;
-  float dx = random(6)-3;
-  float dy = random(6)-3;
+  float dx;
+  float dy;
   float v, a, t;
   Protaganist test = new Protaganist();
   boolean retreating = false;
@@ -31,21 +31,29 @@ class Enemy {
     float v = dist(0, 0, dx, dy);
     dx = v * cos(a);
     dy = v * sin(a);
+    println("v: " + v);
   }
   
-  Enemy(float x, float y) {
+  Enemy(float x, float y, float upper, float lower, float maxLen) {
+    
     xPos = x;
     yPos = y;
     //charWidth = 120; //temporary values
     //charHeight = 75; 
-    maxSize = 7; 
-    patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
+    //maxSize = 7; 
+    patternLen = (int) ((Math.random() * (maxLen)) + 1); //max is 7
     pattern();
     isDead = false;
+    dx = random(lower, upper + 1);
+    dy = random(lower, upper + 1);
+    println("dx: " + dx);
+    println("dy: " + dy);
+    
     float a = atan2(test.getY() - yPos, test.getX() - xPos);
     float v = dist(0, 0, dx, dy);
     dx = v * cos(a);
     dy = v * sin(a);
+    println("v: " + v);
   }
   
   //adds a random assortment of symbols to enemy's pattern
@@ -121,6 +129,7 @@ class Enemy {
     }
     return false;
   }
+
   
   
  
