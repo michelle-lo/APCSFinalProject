@@ -355,5 +355,15 @@ void keyPressed() {
     health = 300;  
   }
   
+  //cheat code for instant win
+  if (keyCode == 68) { //d
+    totalDead = 30;
+  }
+  
+  //cheat code for instant lose
+  if (keyCode ==76) {
+    health = 0;
+  }
+  
   println(keyCode);
 }
