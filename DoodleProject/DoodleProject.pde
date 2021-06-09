@@ -44,10 +44,21 @@ void setup(){
 
 void draw(){
   background(backgroundImage); 
-  homeScreen();
-  text("Lives Left: " + health, 20, 40); 
-  text("Total Dead: " + totalDead, 20, 60);
-  textSize(25);
+  //homescreen
+  if (totalDead == -2) {
+    homeScreen();
+  } else {
+    textAlign(LEFT);
+    text("Lives Left: " + health, 20, 40); 
+    text("Total Dead: " + totalDead, 20, 60);
+    textSize(25);
+    cat.display();
+    enemyDisplay();
+    drawLine();
+    endScreen();
+    winScenario();
+  }
+  
     //stage 1
   if (totalDead < 10 && totalDead >= 0) { //total number of enemies needed to be defeated before advancing is 10
     text("STAGE 1", width/2, 40);
@@ -92,11 +103,7 @@ void draw(){
       spawn(1, upper, lower, maxPatternLen);
     }
   } 
-  cat.display();
-  enemyDisplay();
-  drawLine();
-  endScreen();
-  winScenario();
+  
 }
 
 //player can draw lines anywhere on the screen
@@ -347,18 +354,43 @@ static void getAttacked() {
 }
 
 void homeScreen() {
-  if (totalDead == -2) {
-    image(doodleicon, width / 2 - 200, height / 2, 500, 500);
-    noStroke();
-    fill(4, 92, 90);
-    rect(width / 2 + 100, height / 2 - 130, 250, 100); //play
-    rect(width / 2 + 100, height / 2, 250, 100); //help
-    textAlign(CENTER);
+  image(doodleicon, width / 2 - 200, height / 2, 500, 500);
+  noStroke();
+  fill(4, 92, 90);
+  rect(width / 2 + 100, height / 2 - 130, 250, 100); //play
+  rect(width / 2 + 100, height / 2, 250, 100); //help
+  textAlign(CENTER);
+  fill(225);
+  textSize(20);
+  text("PLAY", (width / 2 + 100) + (250.0 / 2), (height / 2 - 130) + (100.0 / 2)); 
+  text("HELP", (width / 2 + 100) + (250.0 / 2), (height / 2) + (100.0 / 2)); 
+  
+  if (! isHelp && mousePressed && mouseButton == LEFT && 
+     (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
+     (mouseY <= height / 2 - 130 + 100 && mouseY >= height / 2 - 130)) {
+       totalDead = -1;
+       isDisabled = false;
+  } 
+  if (mousePressed && mouseButton == LEFT && 
+     (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
+     (mouseY <= height / 2 + 100 && mouseY >= height / 2)) {
+       isHelp = true;
+  } 
+    
+  if (isHelp) {
+    fill(225, 0 , 0);
+    rect(width - 150, height - 50, 150, 50);
     fill(225);
-    textSize(20);
-    text("PLAY", (width / 2 + 100) + (250.0 / 2), (height / 2 - 130) + (100.0 / 2)); 
-    text("HELP", (width / 2 + 100) + (250.0 / 2), (height / 2) + (100.0 / 2)); 
+    text("EXIT", width - 75, height - 25);
+    image(help, width / 2, height / 2, 700, 700); 
+    if (mousePressed && mouseButton == LEFT &&
+        mouseX <= width && mouseX >= width - 150 &&
+        mouseY <= height && mouseY >= height - 50) {
+          isHelp = false;
+    }
+    
   }
+
 }
 void keyPressed() {
   //spawns 10 enemies
