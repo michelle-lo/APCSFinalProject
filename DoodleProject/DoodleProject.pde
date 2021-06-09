@@ -3,7 +3,7 @@ PImage backgroundImage;
 PImage catCharacter;
 PImage galaxyCat;
 Protaganist cat; 
-static int health = 5;
+static int health = 15;
 
 //coordinates of line drawn by player
 float xi;
@@ -59,30 +59,29 @@ void draw(){
   } 
 
   //stage 2
- 
-  if (totalDead >= 10 && totalDead < 21) { //feel free to adjust the numbers 
+  if (totalDead >= 10 && totalDead < 20) { //feel free to adjust the numbers 
     text("STAGE 2", width/2, 40);
     float upper = 2.5;
     float lower = -1;
     float maxPatternLen = 4;
-    if ((totalDead == 0) && (enemies.size() == 0)) {
+    if ((totalDead == 10) && (enemies.size() == 0)) {
       spawn(2, upper, lower, maxPatternLen);
     }
-    if (totalDead < 9 && enemies.size() < 2) { 
+    if (totalDead < 19 && enemies.size() < 2) { 
       spawn(1, upper, lower, maxPatternLen);
     }
   } 
 
   //stage 3
-  if (totalDead >= 21 && totalDead < 30) {
+  if (totalDead >= 20 && totalDead < 30) {
     text("STAGE 3", width/2, 40);
     float upper = 2.5;
     float lower = -1;
     float maxPatternLen = 5;
-    if ((totalDead == 0) && (enemies.size() == 0)) {
+    if ((totalDead == 20) && (enemies.size() == 0)) {
       spawn(2, upper, lower, maxPatternLen);
     }
-    if (totalDead < 9 && enemies.size() < 2) { 
+    if (totalDead < 29 && enemies.size() < 2) { 
       spawn(1, upper, lower, maxPatternLen);
     }
   } 
