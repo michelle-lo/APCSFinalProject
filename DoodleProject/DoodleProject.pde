@@ -128,7 +128,7 @@ void enemyDisplay() {
   }
 }
 
-//switches to lose background
+//switches to lose background scenario 
 void endScreen() {
   if (health <= 0){
     size(1000, 800);
