@@ -21,7 +21,7 @@ boolean alrPressed = false;
 boolean notLine = false;
 int totalDead;
 
-boolean isStart = true;
+//boolean isStart = true;
 
 //setup() loads the background and creates the protaganist object.
 void setup(){
@@ -51,9 +51,8 @@ void draw(){
     float lower = -1; //this is the lower bound for the velocity
     float maxPatternLen = 3; //this is the max pattern length 
     //at the start, spawn 2 enemies
-    if (isStart && (totalDead == 0) && (enemies.size() == 0)) {
+    if ((totalDead == 0) && (enemies.size() == 0)) {
       spawn(2, upper, lower, maxPatternLen);
-      isStart = false;
     }
     
     if (totalDead < 9 && enemies.size() < 2) { 
@@ -64,6 +63,9 @@ void draw(){
   //stage 2
   if (totalDead >= 10 && totalDead < 21) { //feel free to adjust the numbers 
     text("STAGE 2", width/2, 40);
+    if (enemies.size() == 0 && totalDead == 10) {
+      //
+    }
   } 
   
   //stage 3
