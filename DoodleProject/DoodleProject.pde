@@ -18,6 +18,8 @@ int symb;
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 boolean alrPressed = false;
 boolean notLine = false;
+int totalDead;
+
 
 //setup() loads the background and creates the protaganist object.
 void setup(){
@@ -74,6 +76,7 @@ void enemyDisplay() {
     if (! enemies.get(i).isDead()) {
       enemies.get(i).display();
     } else {
+      totalDead++;
       enemies.remove(i);
     }
   }
