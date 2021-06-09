@@ -89,6 +89,7 @@ void draw(){
   enemyDisplay();
   drawLine();
   endScreen();
+  winScenario();
 }
 
 //player can draw lines anywhere on the screen
@@ -132,6 +133,16 @@ void endScreen() {
   if (health <= 0){
     size(1000, 800);
     backgroundImage = loadImage("croppedGameOver.jpg");
+    backgroundImage.resize(1000, 800);
+    backgroundImage.loadPixels();
+    background(backgroundImage);
+  }
+}
+
+void winScenario(){
+  if(totalDead == 30){
+    size(1000, 800);
+    backgroundImage = loadImage("winGameScreen.jpg");
     backgroundImage.resize(1000, 800);
     backgroundImage.loadPixels();
     background(backgroundImage);
