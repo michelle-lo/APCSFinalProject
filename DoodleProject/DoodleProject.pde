@@ -39,7 +39,33 @@ void setup(){
 void draw(){
   background(backgroundImage); 
   text("Lives Left: " + health, 20, 40); 
+  text("Total Dead: " + totalDead, 20, 60);
   textSize(25);
+    //stage 1
+  if (totalDead < 10) { //total number of enemies needed to be defeated before advancing is 10
+    text("STAGE 1", width/2, 40);
+    float upper = 2; //this is the upper bound for the velocity 
+    float lower = -1; //this is the lower bound for the velocity
+    float maxPatternLen = 3; //this is the max pattern length 
+    //at the start, spawn 2 enemies
+    if ((totalDead == 0) && (enemies.size() == 0)) {
+      spawn(2, upper, lower, maxPatternLen);
+    }
+
+    if (totalDead < 9 && enemies.size() < 2) { 
+      spawn(1, upper, lower, maxPatternLen);
+    } 
+  } 
+
+  //stage 2
+  if (totalDead >= 10 && totalDead < 21) { //feel free to adjust the numbers 
+    text("STAGE 2", width/2, 40);
+  } 
+
+  //stage 3
+  if (totalDead >= 21 && totalDead < 30) {
+    text("STAGE 3", width/2, 40);
+  } 
   cat.display();
   enemyDisplay();
   drawLine();
@@ -94,7 +120,7 @@ void endScreen() {
 }
 
 //spawn() spawns number of enemies randomly on the sides of the screen. 
-void spawn(int numEnemies) {
+void spawn(int numEnemies, float upperV, float lowerV, float maxPatternLen) {
   //int numEnemies = 10;
   for (int i = 0; i < numEnemies; i++) {
     float chance = (int) (Math.random() * 4) + 1;
@@ -113,7 +139,7 @@ void spawn(int numEnemies) {
       enemyX = width;
       enemyY = (float) Math.random() * (height + 1);
     }
-    Enemy e = new Enemy(enemyX, enemyY);
+    Enemy e = new Enemy(enemyX, enemyY, upperV, lowerV, maxPatternLen);
     enemies.add(e);
   }
 }
@@ -170,7 +196,7 @@ void mouseReleased() {
     }
     symb = -1;
   } else { //creates new enemy at mouse location (for testing purposes)
-    Enemy test = new Enemy(mouseX, mouseY);
+    Enemy test = new Enemy(mouseX, mouseY, 3, -3, 7);
     enemies.add(test);
   } 
 }
@@ -286,7 +312,7 @@ static void getAttacked() {
 void keyPressed() {
   //spawns 10 enemies
   if (keyCode == 83) { //s
-    spawn(5);
+    spawn(5, 3, -3, 7);
   }
   
   //clears all enemies
