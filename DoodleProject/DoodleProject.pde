@@ -3,6 +3,8 @@ PImage backgroundImage;
 PImage catCharacter;
 PImage galaxyCat;
 Protaganist cat; 
+PImage doodleicon;
+PImage help;
 static int health = 15;
 
 //coordinates of line drawn by player
@@ -18,7 +20,9 @@ int symb;
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 boolean alrPressed = false;
 boolean notLine = false;
-int totalDead;
+int totalDead = -2;
+boolean isDisabled = true;
+boolean isHelp = false;
 
 
 //setup() loads the background and creates the protaganist object.
@@ -27,6 +31,8 @@ void setup(){
   backgroundImage = loadImage("space.jpg");
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
+  doodleicon = loadImage("doodleicon.png");
+  help = loadImage("Help.png");
   imageMode(CENTER);
   image(backgroundImage, 0, 0);
   backgroundImage.resize(1000, 800);
@@ -38,11 +44,12 @@ void setup(){
 
 void draw(){
   background(backgroundImage); 
+  homeScreen();
   text("Lives Left: " + health, 20, 40); 
   text("Total Dead: " + totalDead, 20, 60);
   textSize(25);
     //stage 1
-  if (totalDead < 10) { //total number of enemies needed to be defeated before advancing is 10
+  if (totalDead < 10 && totalDead >= 0) { //total number of enemies needed to be defeated before advancing is 10
     text("STAGE 1", width/2, 40);
     float upper = 2; //this is the upper bound for the velocity 
     float lower = -1; //this is the lower bound for the velocity
@@ -339,6 +346,20 @@ static void getAttacked() {
   health--;
 }
 
+void homeScreen() {
+  if (totalDead == -2) {
+    image(doodleicon, width / 2 - 200, height / 2, 500, 500);
+    noStroke();
+    fill(4, 92, 90);
+    rect(width / 2 + 100, height / 2 - 130, 250, 100); //play
+    rect(width / 2 + 100, height / 2, 250, 100); //help
+    textAlign(CENTER);
+    fill(225);
+    textSize(20);
+    text("PLAY", (width / 2 + 100) + (250.0 / 2), (height / 2 - 130) + (100.0 / 2)); 
+    text("HELP", (width / 2 + 100) + (250.0 / 2), (height / 2) + (100.0 / 2)); 
+  }
+}
 void keyPressed() {
   //spawns 10 enemies
   if (keyCode == 83) { //s
