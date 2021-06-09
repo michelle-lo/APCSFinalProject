@@ -5,6 +5,7 @@ PImage galaxyCat;
 Protaganist cat; 
 PImage doodleicon;
 PImage help;
+PImage textbox;
 static int health = 15;
 
 //coordinates of line drawn by player
@@ -23,6 +24,7 @@ boolean notLine = false;
 int totalDead = -2;
 boolean isDisabled = true;
 boolean isHelp = false;
+int scene = 0;
 
 
 //setup() loads the background and creates the protaganist object.
@@ -32,6 +34,7 @@ void setup(){
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
   doodleicon = loadImage("doodleicon.png");
+  textbox = loadImage("textbox.png");
   help = loadImage("Help.png");
   imageMode(CENTER);
   image(backgroundImage, 0, 0);
@@ -47,11 +50,16 @@ void draw(){
   //homescreen
   if (totalDead == -2) {
     homeScreen();
+  } else if(totalDead == -1) {  
+    textAlign(LEFT);
+    image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
+    textSize(20);
+    cutscene();
   } else {
     textAlign(LEFT);
+    textSize(25);
     text("Lives Left: " + health, 20, 40); 
     text("Total Dead: " + totalDead, 20, 60);
-    textSize(25);
     cat.display();
     enemyDisplay();
     drawLine();
@@ -390,7 +398,18 @@ void homeScreen() {
     }
     
   }
+}
 
+void cutscene() {
+  if (scene == 0) {
+    text("One one fine day in the Catalytic Universe, our protagonist, Luna, boards her ship", 160, 600); 
+  } else if (scene == 1) {
+    text("I can't wait until I can see my family!",160,600);
+    cat.display();
+  } else if (scene == 3) {
+    totalDead = 0;
+  } 
+  
 }
 void keyPressed() {
   //spawns 10 enemies
@@ -417,6 +436,11 @@ void keyPressed() {
   if (keyCode ==76) {
     health = 0;
   }
+  
+  //to advance scenes
+  if (keyCode == 78) { //n
+     scene++;
+   }
   
   println(keyCode);
 }
