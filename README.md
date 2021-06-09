@@ -32,6 +32,6 @@ Michelle: Added two new symbols for the player to create: the carrot and the dow
 
 Reshmi: Created and formatted characters for the protagonist and enemies. Coded the lose / end screen situation.
 
-Michelle:
+Michelle: Edited movement for enemies. Tweaked some methods that had to change due to the different protagonist and enemy model.
 
-6/9/21:
+6/9/21: (Zoom Call)
