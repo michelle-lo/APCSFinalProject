@@ -1,4 +1,9 @@
+import processing.sound.*;
 import java.util.*;
+SoundFile file;
+String audioName = "shortGame.mp3";
+String path;
+
 PImage backgroundImage;
 PImage catCharacter;
 PImage galaxyCat;
@@ -40,6 +45,9 @@ boolean toggleN = true;
 void setup() {
   size(1000, 800);
   backgroundImage = loadImage("space.jpg");
+  path = sketchPath(audioName);
+  file = new SoundFile(this, path);
+  file.play();
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
   doodleicon = loadImage("doodleicon.png");
