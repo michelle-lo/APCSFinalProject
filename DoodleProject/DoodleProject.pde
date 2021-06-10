@@ -69,7 +69,7 @@ void setup() {
 
 void draw() {
   background(backgroundImage); 
-  text("scene: " + scene, 20, 80);
+  //text("scene: " + scene, 20, 80);
   //homescreen
 
   if (totalDead == -5) {
