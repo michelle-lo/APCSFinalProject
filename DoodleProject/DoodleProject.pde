@@ -208,6 +208,30 @@ void winScenario() {
   background(backgroundImage);
 }
 
+void pinkBackground(){
+  size(1000, 800);
+  backgroundImage = loadImage("pinkGalaxy.jpg");
+  backgroundImage.resize(1000, 800);
+  backgroundImage.loadPixels();
+  background(backgroundImage);
+}
+
+void blueBackground(){
+  size(1000, 800);
+  backgroundImage = loadImage("blueGalaxy.jpg");
+  backgroundImage.resize(1000, 800);
+  backgroundImage.loadPixels();
+  background(backgroundImage);
+}
+
+void greenBackground(){
+  size(1000, 800);
+  backgroundImage = loadImage("greenGalaxy.jpg");
+  backgroundImage.resize(1000, 800);
+  backgroundImage.loadPixels();
+  background(backgroundImage);
+}
+
 //spawn() spawns number of enemies randomly on the sides of the screen. 
 void spawn(int numEnemies, float upperV, float lowerV, float maxPatternLen) {
   //int numEnemies = 10;
@@ -502,6 +526,7 @@ void cutscene() {
     whiskers.display();
     text("Luna: Ny-o!!!", 160, 600);
   } else if (scene == 15) { //the first line of "after intro" scene 
+    pinkBackground();
     //scene++;
     toggleN = false;
     stage1 = true;
@@ -534,6 +559,7 @@ void cutscene() {
     text("Whiskers: Don’t thank me yet, you still have to learn your lesson", 160, 600);
   } else if (scene == 22) { //last line of "after stage 1" scene
     //scene++;
+    blueBackground();
     toggleN = false;
     stage2 = true; //start stage 2
   } else if (scene == 23) {
@@ -568,6 +594,7 @@ void cutscene() {
     text("You still have to face the wrath of the More-Difficult-Stage-3!", 160, 600);
   } else if (scene == 30) {
     //scene++;
+    greenBackground();
     toggleN = false;
     stage3 = true; //start stage 3
   } else if (scene == 31) {
