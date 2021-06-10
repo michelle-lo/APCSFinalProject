@@ -34,4 +34,15 @@ Reshmi: Created and formatted characters for the protagonist and enemies. Coded 
 
 Michelle: Edited movement for enemies. Tweaked some methods that had to change due to the different protagonist and enemy model.
 
-6/9/21: (Zoom Call)
+6/9/21: (4 hour Zoom Call together)
+
+Reshmi: Debugged together and worked to add panels to feature dialogue that could be toggled on and off when playing the round. Found sources for background images/objects and began to code background music.
+
+Michelle:
+
+
+6/10/21:
+
+Reshmi: Finished cutscenes by adding dialogue, background changes, character exits, and the tools that needed to be collected (panel, antenna, propane).
+
+Michelle:
