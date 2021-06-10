@@ -3,10 +3,14 @@ PImage backgroundImage;
 PImage catCharacter;
 PImage galaxyCat;
 Protaganist cat; 
+Enemy whiskers;
 PImage doodleicon;
 PImage help;
 PImage textbox;
-
+PImage panel;
+PImage propane;
+PImage antennae;
+PImage spaceship;
 static int health = 15;
 
 //coordinates of line drawn by player
@@ -41,12 +45,17 @@ void setup() {
   doodleicon = loadImage("doodleicon.png");
   textbox = loadImage("textbox.png");
   help = loadImage("Help.png");
+  panel = loadImage("panel.png");
+  propane = loadImage("propane.png");
+  antennae = loadImage("antennae.png");
+  spaceship = loadImage("spaceship.png");
   imageMode(CENTER);
   image(backgroundImage, 0, 0);
   backgroundImage.resize(1000, 800);
   image(backgroundImage, 0, 0);
   backgroundImage.loadPixels();
   cat = new Protaganist();
+  whiskers = new Enemy(width / 2 + 250, height / 2, 0, 0, 0);
   symb = -1; //-1 indicates no symbol
 }
 
@@ -115,9 +124,9 @@ void draw() {
 
   if (stage3 == false && totalDead == 20) {
     textSize(20);
-    //if (scene == ) {
-      //scene++;
-    //}
+    if (scene == 22) {
+      scene++;
+    }
     cutscene();
   }
 
@@ -135,8 +144,11 @@ void draw() {
     }
   }
 
-  if (/*stage2 == false && */totalDead == 30) {
+  if (totalDead == 30) {
     textSize(20);
+    if (scene == 30) {
+      scene++;
+    }
     cutscene();
   }
 }
@@ -433,6 +445,7 @@ void cutscene() {
     //text("On one fine day in the Calactic universe, Luna, a Space Castronaut,"
     //anything longer than the line above would be problematic...
     cat.display();
+    whiskers.display();
     text("On one fine day in the Calactic universe, Luna, a Space Castronaut,", 160, 600);
     text("gets ready to go home after a busy day at Meowvesant.", 160, 630);
   } else if (scene == 1) {
@@ -496,6 +509,7 @@ void cutscene() {
     toggleN = false;
     stage2 = true; //start stage 2
   } else if (scene == 23) {
+    toggleN = true;
     text("f", 160, 600);
   } else if (scene == 24) {
     text("g", 160, 600);
@@ -515,6 +529,7 @@ void cutscene() {
     toggleN = false;
     stage3 = true; //start stage 3
   } else if (scene == 31) {
+    toggleN = true;
     text("", 160, 600);
   } else if (scene == 32) {
     text("", 160, 600);
