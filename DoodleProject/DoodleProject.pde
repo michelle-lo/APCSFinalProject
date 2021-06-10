@@ -47,8 +47,7 @@ void setup() {
   backgroundImage = loadImage("space.jpg");
   path = sketchPath(audioName);
   file = new SoundFile(this, path);
-  //file.play();
-  file.loop();
+  //file.loop();
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
   doodleicon = loadImage("doodleicon.png");
@@ -491,12 +490,10 @@ void cutscene() {
     text("Goodbye sleepless nights and hello Summer va-cat-ion!", 160, 600);
     text("I can’t wait to kick back at home.", 160, 630);
   } else if (scene == 3) {
-    cat.display();
     image(spaceship, 300, 300, 300, 200);
     text("Luna boards her Catillac, her personalized space shuttle, and", 160, 600);
     text("begins her journey across the Calactic Universe.", 160, 630);
   } else if (scene == 4) {
-    cat.display();
     image(spaceship, 300, 300, 300, 200);
     text("Luna: (singing) Nyan Nyan Nyan Nyan~ ", 160, 600);
   } else if (scene == 5) {
