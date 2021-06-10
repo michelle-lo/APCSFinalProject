@@ -52,7 +52,7 @@ void setup() {
   galaxyCat = loadImage("croppedGalaxyCat.png");
   doodleicon = loadImage("doodleicon.png");
   textbox = loadImage("textbox.png");
-  help = loadImage("Help.png");
+  help = loadImage("rules.png");
   panel = loadImage("panel.png");
   propane = loadImage("propane.png");
   antennae = loadImage("antennae.png");
@@ -687,6 +687,7 @@ void cutscene() {
   }
 }
 
+
 void keyPressed() {
   //spawns 10 enemies
   if (keyCode == 83) { //s
@@ -697,7 +698,15 @@ void keyPressed() {
   if (keyCode == 32) { //space
     enemies.clear();
   }
-
+  //pauses/resume music
+  if (keyCode == 80) { 
+    if(file.isPlaying()){
+      file.pause();
+    } else{
+      file.play();
+    }
+  }
+  
   //to cheat;))
   if (keyCode == 72) { //h
     health = 300;
@@ -709,7 +718,7 @@ void keyPressed() {
   }
 
   //cheat code for instant lose
-  if (keyCode ==76) {
+  if (keyCode == 76) {
     health = 0;
   }
 
