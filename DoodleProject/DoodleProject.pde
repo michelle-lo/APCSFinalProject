@@ -445,12 +445,12 @@ void cutscene() {
     //text("On one fine day in the Calactic universe, Luna, a Space Castronaut,"
     //anything longer than the line above would be problematic...
     cat.display();
-    whiskers.display();
+    //whiskers.display();
     text("On one fine day in the Calactic universe, Luna, a Space Castronaut,", 160, 600);
     text("gets ready to go home after a busy day at Meowvesant.", 160, 630);
   } else if (scene == 1) {
     cat.display();
-    text("Luna: “I can’t believe finals week is finally over!", 160, 600);
+    text("Luna: I can’t believe finals week is finally over!", 160, 600);
   } else if (scene == 2) {
     cat.display();
     text("Goodbye sleepless nights and hello Summer va-cat-ion!", 160, 600);
@@ -469,21 +469,37 @@ void cutscene() {
     cat.display();
     text("Luna: Huh?! What just happened?!", 160, 600);
   } else if (scene == 7) {
-    
-    text("", 160, 600);
+    cat.display();
+    text("Luna steps outside to investigate", 160, 600);
   } else if (scene == 8) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: Look what you have done!", 160, 600);
   } else if (scene == 9) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("A strange creature appears behind Luna", 160, 600);
   } else if (scene == 10) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: W-who are you?", 160, 600);
   } else if (scene == 11) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: I'm Whiskers, a Bug, and your stupid flying thing", 160, 600);
+    text("just trespassed into my territory!", 160, 630);
   } else if (scene == 12) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Oh no! My Catillac is all broken now!", 160, 600);
   } else if (scene == 13) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: You have no remorse for your actions! You and your", 160, 600);
+    text("ship must now suffer the consequences! Bugs - assemble!", 160, 630);
   } else if (scene == 14) {
+    cat.display();
+    whiskers.display();
     text("Luna: Ny-o!!!", 160, 600);
   } else if (scene == 15) { //the first line of "after intro" scene 
     //scene++;
@@ -492,17 +508,29 @@ void cutscene() {
     totalDead = 0;
   } else if (scene == 16) {
     toggleN = true;
-    text("a", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: You have defeated my army of bugs!", 160, 600);
   } else if (scene == 17) {
-    text("b", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: I have to go home to my family!", 160, 600);
   } else if (scene == 18) {
-    text("c", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: Here is your control panel.", 160, 600);
   } else if (scene == 19) {
-    text("d", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("You obtained: Panel", 160, 600);
   } else if (scene == 20) {
-    text("e", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Thank you!", 160, 600);
   } else if (scene == 21) {
     //toggleN = true;
+    cat.display();
+    whiskers.display();
     text("Whiskers: Don’t thank me yet, you still have to learn your lesson", 160, 600);
   } else if (scene == 22) { //last line of "after stage 1" scene
     //scene++;
@@ -510,52 +538,93 @@ void cutscene() {
     stage2 = true; //start stage 2
   } else if (scene == 23) {
     toggleN = true;
-    text("f", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Haha! I'm getting good at this!", 160, 600);
   } else if (scene == 24) {
-    text("g", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: You got to be kitten me!", 160, 600);
   } else if (scene == 25) {
-    text("h", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: Whatever! Here's your antenna...", 160, 600);
   } else if (scene == 26) {
-    text("i", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("You obtained: antenna", 160, 600);
   } else if (scene == 27) {
-    text("j", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Yes! Purr-fect!", 160, 600);
   } else if (scene == 28) {
-    text("k", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: You're not done with me yet...", 160, 600);
   } else if (scene == 29) {  
     toggleN = true;
-    text("ahhhhh", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("You still have to face the wrath of the More-Difficult-Stage-3!", 160, 600);
   } else if (scene == 30) {
     //scene++;
     toggleN = false;
     stage3 = true; //start stage 3
   } else if (scene == 31) {
     toggleN = true;
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("You obtained: Propane", 160, 600);
   } else if (scene == 32) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Yes! Claw-some!", 160, 600);
   } else if (scene == 33) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna's Catillac makes an appearance", 160, 600);
   } else if (scene == 34) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: You defeated me and all of my friends!", 160, 600);
   } else if (scene == 35) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: I'm sorry, I just needed my Catillac parts back!", 160, 600);
   } else if (scene == 36) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: We understand, just make sure to be more careful", 160, 600);
+    text("in the future", 160, 630);
   } else if (scene == 37) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Of course! Landing in your territory was truly an accident!", 160, 600);
   } else if (scene == 38) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: Alright, don't worry about it!", 160, 600);
   } else if (scene == 39) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: I want to apologize, so do you want to visit my planet?", 160, 600);
   } else if (scene == 40) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: That sounds delightful!", 160, 600);
   } else if (scene == 41) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: Jump in the Catillac! We should be home in no time at all!", 160, 600);
   } else if (scene == 42) {
-    text("", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Whiskers: We are all very excited, thank you for welcoming us!", 160, 600);
   } else if (scene == 43) {
     toggleN = true;
-    text("ahhhhh", 160, 600);
+    cat.display();
+    whiskers.display();
+    text("Luna: No problem!", 160, 600);
   } else if (scene == 44) {
     toggleN = false;
     winScenario();
