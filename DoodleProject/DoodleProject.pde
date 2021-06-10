@@ -510,7 +510,6 @@ void cutscene() {
     text("Luna begins to investigate", 160, 600);
   } else if (scene == 8) {
     cat.display();
-    whiskers.display();
     text("Whiskers: Look what you have done!", 160, 600);
   } else if (scene == 9) {
     cat.display();
@@ -548,7 +547,7 @@ void cutscene() {
     toggleN = true;
     cat.display();
     whiskers.display();
-    text("Whiskers: You have defeated my army of bugs!", 160, 600);
+    text("Whiskers: You have defeated my army of Bugs!", 160, 600);
   } else if (scene == 17) {
     cat.display();
     whiskers.display();
@@ -556,8 +555,7 @@ void cutscene() {
   } else if (scene == 18) {
     cat.display();
     whiskers.display();
-    image(panel, 300, 300, 200, 100);
-    text("Whiskers: Here is your control panel.", 160, 600);
+    text("Whiskers: Fine. Here is your control panel.", 160, 600);
   } else if (scene == 19) {
     cat.display();
     whiskers.display();
@@ -591,7 +589,6 @@ void cutscene() {
   } else if (scene == 25) {
     cat.display();
     whiskers.display();
-    image(antennae, 300, 300, 100, 200);
     text("Whiskers: Whatever! Here's your antenna...", 160, 600);
   } else if (scene == 26) {
     cat.display();
