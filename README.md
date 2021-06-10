@@ -9,6 +9,10 @@ Prototype Link: https://docs.google.com/document/d/1DrXI50jfh32Y6TNM1hwQLIokbTJr
 Brief Project Description:
 Our group project will utilize processing to create an interactive game for users to enjoy. The objective of the game is for the main character to defeat all its enemies before its lives run out. Our game will feature moving enemy attackers which will have certain sequences of symbols that the user will have to correctly draw in order to win. Once these symbols are recognized by their corresponding slopes, the enemy attacker will be defeated.
 
+Directions:
+To run the game with music, import the Processing Foundation's Sound Library for Processing. To install, go to Sketch --> Import Library --> Add Library --> Type in "Sound" --> Select and Install.
+
+
 Development Log
 
 5/24/21:
@@ -43,6 +47,6 @@ Michelle:
 
 6/10/21:
 
-Reshmi: Finished cutscenes by adding dialogue, background changes, character exits, and the tools that needed to be collected (panel, antenna, propane).
+Reshmi: Finished cutscenes by adding dialogue, background changes, character exits, and the tools that needed to be collected (panel, antenna, propane). Added background music, pause/play keys, and updated instructions.
 
 Michelle:
