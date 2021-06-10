@@ -21,14 +21,18 @@ int symb;
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 boolean alrPressed = false;
 boolean notLine = false;
-int totalDead = -2;
+int totalDead = -5;
 boolean isDisabled = true;
 boolean isHelp = false;
 int scene = 0;
+boolean stage1 = false;
+boolean stage2 = false;
+boolean stage3 = false;
+boolean toggleN = true;
 
 
 //setup() loads the background and creates the protaganist object.
-void setup(){
+void setup() {
   size(1000, 800);
   backgroundImage = loadImage("space.jpg");
   catCharacter = loadImage("croppedNyanCat.png");
@@ -45,16 +49,19 @@ void setup(){
   symb = -1; //-1 indicates no symbol
 }
 
-void draw(){
+void draw() {
   background(backgroundImage); 
+  text("scene: " + scene, 20, 80);
   //homescreen
-  if (totalDead == -2) {
+
+  if (totalDead == -5) {
     homeScreen();
-  } else if(totalDead == -1) {  
+  } else if (totalDead == -4) { //intro cut scene  
     textAlign(LEFT);
-    image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
+    //image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
     textSize(20);
     cutscene();
+    //} else if (totalDead == -3) {
   } else {
     textAlign(LEFT);
     textSize(25);
@@ -64,11 +71,11 @@ void draw(){
     enemyDisplay();
     drawLine();
     endScreen();
-    winScenario();
+    //winScenario();
   }
-  
-    //stage 1
-  if (totalDead < 10 && totalDead >= 0) { //total number of enemies needed to be defeated before advancing is 10
+
+  //stage 1
+  if (stage1 && totalDead < 10 && totalDead >= 0) { //total number of enemies needed to be defeated before advancing is 10
     text("STAGE 1", width/2, 40);
     float upper = 2; //this is the upper bound for the velocity 
     float lower = -1; //this is the lower bound for the velocity
@@ -80,12 +87,19 @@ void draw(){
 
     if (totalDead < 9 && enemies.size() < 2) { 
       spawn(1, upper, lower, maxPatternLen);
-    } 
-    
-  } 
+    }
+  }
+
+  if (stage2 == false && totalDead == 10) {
+    textSize(20);
+    if (scene == 15) {
+      scene++;
+    }
+    cutscene();
+  }
 
   //stage 2
-  if (totalDead >= 10 && totalDead < 20) { //feel free to adjust the numbers 
+  if (stage2 && totalDead >= 10 && totalDead < 20) { //feel free to adjust the numbers 
     text("STAGE 2", width/2, 40);
     float upper = 2.5;
     float lower = -1;
@@ -98,8 +112,16 @@ void draw(){
     }
   } 
 
+  if (stage3 == false && totalDead == 20) {
+    textSize(20);
+    //if (scene == ) {
+      //scene++;
+    //}
+    cutscene();
+  }
+
   //stage 3
-  if (totalDead >= 20 && totalDead < 30) {
+  if (stage3 && totalDead >= 20 && totalDead < 30) {
     text("STAGE 3", width/2, 40);
     float upper = 2.5;
     float lower = -1;
@@ -110,8 +132,12 @@ void draw(){
     if (totalDead < 29 && enemies.size() < 2) { 
       spawn(1, upper, lower, maxPatternLen);
     }
-  } 
-  
+  }
+
+  if (/*stage2 == false && */totalDead == 30) {
+    textSize(20);
+    cutscene();
+  }
 }
 
 //player can draw lines anywhere on the screen
@@ -152,7 +178,7 @@ void enemyDisplay() {
 
 //switches to lose background scenario 
 void endScreen() {
-  if (health <= 0){
+  if (health <= 0) {
     size(1000, 800);
     backgroundImage = loadImage("croppedGameOver.jpg");
     backgroundImage.resize(1000, 800);
@@ -161,14 +187,12 @@ void endScreen() {
   }
 }
 
-void winScenario(){
-  if(totalDead == 30){
-    size(1000, 800);
-    backgroundImage = loadImage("winGameScreen.jpg");
-    backgroundImage.resize(1000, 800);
-    backgroundImage.loadPixels();
-    background(backgroundImage);
-  }
+void winScenario() {
+  size(1000, 800);
+  backgroundImage = loadImage("winGameScreen.jpg");
+  backgroundImage.resize(1000, 800);
+  backgroundImage.loadPixels();
+  background(backgroundImage);
 }
 
 //spawn() spawns number of enemies randomly on the sides of the screen. 
@@ -232,7 +256,7 @@ void mouseReleased() {
     linePts2[1] = yi;
     linePts2[2] = xf;
     linePts2[3] = yf;
-    alrPressed = true;  
+    alrPressed = true;
   } else if (mouseButton == LEFT) {
     stroke(0);
     xf = mouseX;
@@ -250,7 +274,7 @@ void mouseReleased() {
   } else { //creates new enemy at mouse location (for testing purposes)
     Enemy test = new Enemy(mouseX, mouseY, 3, -3, 7);
     enemies.add(test);
-  } 
+  }
 }
 
 //symbolize() recognizes the symbol based on the slope of the line created.
@@ -293,7 +317,7 @@ void symbolize() {
         if (linePts2[0] > linePts2[2]) { //positive slope going down
           if (slope2 >= 0.7 && slope2 <= 3.15) { //negative slope
             println(test += " 4 (\\/) --> 2");
-            symb = 4; 
+            symb = 4;
           } else {
             println(test += " Not valid symbol");
             symb = -1;
@@ -333,7 +357,7 @@ void symbolize() {
       println(test += " Not valid symbol");
     }
   }
-  notLine = false; 
+  notLine = false;
 }
 
 
@@ -372,75 +396,109 @@ void homeScreen() {
   textSize(20);
   text("PLAY", (width / 2 + 100) + (250.0 / 2), (height / 2 - 130) + (100.0 / 2)); 
   text("HELP", (width / 2 + 100) + (250.0 / 2), (height / 2) + (100.0 / 2)); 
-  
+
   if (! isHelp && mousePressed && mouseButton == LEFT && 
-     (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
-     (mouseY <= height / 2 - 130 + 100 && mouseY >= height / 2 - 130)) {
-       totalDead = -1;
-       isDisabled = false;
+    (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
+    (mouseY <= height / 2 - 130 + 100 && mouseY >= height / 2 - 130)) {
+    totalDead = -4;
+    isDisabled = false;
   } 
   if (mousePressed && mouseButton == LEFT && 
-     (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
-     (mouseY <= height / 2 + 100 && mouseY >= height / 2)) {
-       isHelp = true;
+    (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
+    (mouseY <= height / 2 + 100 && mouseY >= height / 2)) {
+    isHelp = true;
   } 
-    
+
   if (isHelp) {
-    fill(225, 0 , 0);
+    fill(225, 0, 0);
     rect(width - 150, height - 50, 150, 50);
     fill(225);
     text("EXIT", width - 75, height - 25);
     image(help, width / 2, height / 2, 700, 700); 
     if (mousePressed && mouseButton == LEFT &&
-        mouseX <= width && mouseX >= width - 150 &&
-        mouseY <= height && mouseY >= height - 50) {
-          isHelp = false;
+      mouseX <= width && mouseX >= width - 150 &&
+      mouseY <= height && mouseY >= height - 50) {
+      isHelp = false;
     }
-    
   }
 }
 
 void cutscene() {
+  //the next cutscene will play when the player presses the "n" key
+  if (scene != 44) {
+    image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
+  }
   if (scene == 0) {
-    text("One one fine day in the Catalytic Universe, our protagonist, Luna, boards her ship", 160, 600); 
+    //anything longer than the line below would be problematic... 
+    text("One one fine day in the Catalytic Universe, our protagonist, Luna", 160, 600);
   } else if (scene == 1) {
-    text("I can't wait until I can see my family!",160,600);
+    text("I can't wait until I can see my family!", 160, 600);
     cat.display();
-  } else if (scene == 3) {
+  } else if (scene == 14) {
+    //stage1 = true;
+    //totalDead = 0; //this initiates the fighting
+  } else if (scene == 14) {
+    text("Luna: Ny-o!!!", 160, 600);
+  } else if (scene == 15) { //the first line of "after intro" scene 
+    //scene++;
+    toggleN = false;
+    stage1 = true;
     totalDead = 0;
-  } 
-  
+  } else if (scene == 21) {
+    toggleN = true;
+    text("Whiskers: Don’t thank me yet, you still have to learn your lesson", 160, 600);
+  } else if (scene == 22) { //last line of "after stage 1" scene
+    //scene++;
+    toggleN = false;
+    stage2 = true; //start stage 2
+  } else if (scene == 29) {  
+    toggleN = true;
+    text("ahhhhh", 160, 600);
+  } else if (scene == 30) {
+    //scene++;
+    toggleN = false;
+    stage3 = true; //start stage 3
+  } else if (scene == 43) {
+    toggleN = true;
+    text("ahhhhh", 160, 600);
+  } else if (scene == 44) {
+    toggleN = false;
+    winScenario();
+  }
 }
+
 void keyPressed() {
   //spawns 10 enemies
   if (keyCode == 83) { //s
     spawn(5, 3, -3, 7);
   }
-  
+
   //clears all enemies
   if (keyCode == 32) { //space
     enemies.clear();
   }
-  
+
   //to cheat;))
   if (keyCode == 72) { //h
-    health = 300;  
+    health = 300;
   }
-  
+
   //cheat code for instant win
   if (keyCode == 68) { //d
     totalDead = 30;
   }
-  
+
   //cheat code for instant lose
   if (keyCode ==76) {
     health = 0;
   }
-  
+
   //to advance scenes
   if (keyCode == 78) { //n
-     scene++;
-   }
-  
+    if (toggleN) {
+      scene++;
+    }
+  }
+
   println(keyCode);
 }
