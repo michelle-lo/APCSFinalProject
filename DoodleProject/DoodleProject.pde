@@ -47,7 +47,8 @@ void setup() {
   backgroundImage = loadImage("space.jpg");
   path = sketchPath(audioName);
   file = new SoundFile(this, path);
-  file.play();
+  //file.play();
+  file.loop();
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
   doodleicon = loadImage("doodleicon.png");
