@@ -1,8 +1,12 @@
 import processing.sound.*;
 import java.util.*;
 SoundFile file;
+SoundFile home;
 String audioName = "shortGame.mp3";
 String path;
+String homeAudio = "homemusic.mp3";
+String homePath;
+boolean homePlaying = true;
 
 PImage backgroundImage;
 PImage catCharacter;
@@ -47,6 +51,9 @@ void setup() {
   backgroundImage = loadImage("space.jpg");
   path = sketchPath(audioName);
   file = new SoundFile(this, path);
+  homePath = sketchPath(homeAudio);
+  home = new SoundFile(this, homePath);
+  home.loop();
   //file.loop();
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
@@ -474,8 +481,7 @@ void cutscene() {
     image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
   }
   if (scene == 0) {
-    //text("On one fine day in the Calactic universe, Luna, a Space Castronaut,"
-    //anything longer than the line above would be problematic...
+    home.stop();
     cat.display();
     image(spaceship, 300, 300, 300, 200);
     text("On one fine day in the Calactic universe, Luna, a Space Castronaut,", 160, 600);
@@ -507,7 +513,7 @@ void cutscene() {
     text("Luna begins to investigate", 160, 600);
   } else if (scene == 8) {
     cat.display();
-    text("Whiskers: Look what you have done!", 160, 600);
+    text("???: Look what you have done!", 160, 600);
   } else if (scene == 9) {
     cat.display();
     whiskers.display();
@@ -696,14 +702,25 @@ void keyPressed() {
 
   //clears all enemies
   if (keyCode == 32) { //space
+    println("scene: " + scene);
     enemies.clear();
   }
   //pauses/resume music
-  if (keyCode == 80) { 
-    if(file.isPlaying()){
-      file.pause();
-    } else{
-      file.play();
+  if (keyCode == 80) { //p
+    println("homePlaying: " + homePlaying);
+    if (! homePlaying) {
+      
+      if (file.isPlaying()) {
+        file.pause();
+      } else {
+        file.loop();
+      }
+    } else {
+      if (home.isPlaying()) {
+        home.pause();
+      } else {
+        home.loop();
+      }
     }
   }
   
@@ -724,9 +741,17 @@ void keyPressed() {
 
   //to advance scenes
   if (keyCode == 78) { //n
-    if (toggleN) {
+  
+    if (totalDead == -4 && scene == 0) {
+      file.loop();
+      homePlaying = false;
+    }
+    if (totalDead > -5 && toggleN) {
       scene++;
     }
+   
+    
+    println("scene: " + scene);
   }
 
   println(keyCode);
