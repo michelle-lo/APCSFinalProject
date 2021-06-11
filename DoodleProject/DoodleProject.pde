@@ -21,6 +21,7 @@ PImage propane;
 PImage antennae;
 PImage spaceship;
 static int health = 30;
+boolean difficulty = false;
 
 //coordinates of line drawn by player
 float xi;
@@ -451,10 +452,16 @@ void cutscene() {
   }
   if (scene == 0) {
     home.stop();
-    cat.display();
-    image(spaceship, 300, 300, 300, 200);
-    text("On one fine day in the Calactic universe, Luna, a Space Castronaut,", 160, 600);
-    text("gets ready to go home after a busy day at Meowvesant.", 160, 630);
+    if (difficulty == false) {
+      text("Choose Difficulty Mode,", 160, 600);
+      text("Press 'e' for Easy, 'i' for Intermediate, and 'd' for Difficult,", 160, 630);
+    }
+    if (difficulty == true) {
+      cat.display();
+      image(spaceship, 300, 300, 300, 200);
+      text("On one fine day in the Catlactic universe, Luna, a Space Castronaut,", 160, 600);
+      text("gets ready to go home after a busy day at Meowvesant.", 160, 630);
+    }
   } else if (scene == 1) {
     cat.display();
     image(spaceship, 300, 300, 300, 200);
@@ -713,9 +720,27 @@ void keyPressed() {
       file.loop();
       homePlaying = false;
     }
-    if (totalDead > -5 && toggleN) {
+    if (totalDead > -5 && toggleN && difficulty) {
       scene++;
     }
   }
+  
+  
+  if (difficulty == false) { 
+     if (keyCode == 69) { //e
+      health = 40;
+      difficulty = true;
+    } else if (keyCode == 73) { //i
+      health = 20;
+      difficulty = true;
+    } else if (keyCode == 68) { //d
+      health = 9;
+      difficulty = true;
+    }
+    
+  }
+  
+  
+  //println(keyCode);
 
 }
