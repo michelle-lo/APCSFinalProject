@@ -20,7 +20,7 @@ PImage panel;
 PImage propane;
 PImage antennae;
 PImage spaceship;
-static int health = 15;
+static int health = 30;
 
 //coordinates of line drawn by player
 float xi;
@@ -54,7 +54,6 @@ void setup() {
   homePath = sketchPath(homeAudio);
   home = new SoundFile(this, homePath);
   home.loop();
-  //file.loop();
   catCharacter = loadImage("croppedNyanCat.png");
   galaxyCat = loadImage("croppedGalaxyCat.png");
   doodleicon = loadImage("doodleicon.png");
@@ -71,40 +70,34 @@ void setup() {
   backgroundImage.loadPixels();
   cat = new Protaganist();
   whiskers = new Enemy(width / 2 + 250, height / 2, 0, 0, 0);
-  symb = -1; //-1 indicates no symbol
+  symb = -1;
 }
 
 void draw() {
   background(backgroundImage); 
-  //text("scene: " + scene, 20, 80);
-  //homescreen
-
   if (totalDead == -5) {
     homeScreen();
   } else if (totalDead == -4) { //intro cut scene  
     textAlign(LEFT);
-    //image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
     textSize(20);
     cutscene();
-    //} else if (totalDead == -3) {
   } else {
     textAlign(LEFT);
     textSize(25);
     text("Lives Left: " + health, 20, 40); 
-    text("Total Dead: " + totalDead, 20, 60);
+    text("Total Defeated: " + totalDead, 20, 60);
     cat.display();
     enemyDisplay();
     drawLine();
     endScreen();
-    //winScenario();
   }
 
   //stage 1
   if (stage1 && totalDead < 10 && totalDead >= 0) { //total number of enemies needed to be defeated before advancing is 10
     text("STAGE 1", width/2, 40);
-    float upper = 2; //this is the upper bound for the velocity 
-    float lower = -1; //this is the lower bound for the velocity
-    float maxPatternLen = 3; //this is the max pattern length 
+    float upper = 2;  
+    float lower = -1;
+    float maxPatternLen = 3; 
     //at the start, spawn 2 enemies
     if ((totalDead == 0) && (enemies.size() == 0)) {
       spawn(2, upper, lower, maxPatternLen);
@@ -124,7 +117,7 @@ void draw() {
   }
 
   //stage 2
-  if (stage2 && totalDead >= 10 && totalDead < 20) { //feel free to adjust the numbers 
+  if (stage2 && totalDead >= 10 && totalDead < 20) {  
     text("STAGE 2", width/2, 40);
     float upper = 2.5;
     float lower = -1;
@@ -249,7 +242,6 @@ void greenBackground(){
 
 //spawn() spawns number of enemies randomly on the sides of the screen. 
 void spawn(int numEnemies, float upperV, float lowerV, float maxPatternLen) {
-  //int numEnemies = 10;
   for (int i = 0; i < numEnemies; i++) {
     float chance = (int) (Math.random() * 4) + 1;
     float enemyX = 0;
@@ -295,7 +287,6 @@ void mousePressed() {
     xi = mouseX;
     yi = mouseY;
     stroke(10);
-    println("xi: " + xi + " yi: " + yi);
   }
 }
 
@@ -313,7 +304,6 @@ void mouseReleased() {
     stroke(0);
     xf = mouseX;
     yf = mouseY;
-    println("xf: " + xf + " yf: " + yf);
     linePts[0] = xi;
     linePts[1] = yi;
     linePts[2] = xf;
@@ -323,10 +313,7 @@ void mouseReleased() {
       enemies.get(i).getAttacked(symb);
     }
     symb = -1;
-  } else { //creates new enemy at mouse location (for testing purposes)
-    Enemy test = new Enemy(mouseX, mouseY, 3, -3, 7);
-    enemies.add(test);
-  }
+  } 
 }
 
 //symbolize() recognizes the symbol based on the slope of the line created.
@@ -339,23 +326,17 @@ void symbolize() {
       float slope = (linePts[3] - linePts[1]) / (linePts[2] - linePts[0]);
       test += " slope: " + slope;
       if (abs(slope) >= 5) {
-        println(test += " 0 (up)");
         symb = 0;
       } else if (abs(slope) <= 0.15) {
-        println(test += " 1 (horizontal)");
         symb = 1;
       } else if (slope <= -0.7 && slope >= -3.15) {
-        println(test += " 2 (positive slope)");
         symb = 2;
       } else if (slope >= 0.7 && slope <= 3.15) {
-        println(test += " 3 (negative slope)");
         symb = 3;
       } else {
-        println(test += " Not valid symbol");
         symb = -1;
       }
     } else {
-      println(test += " too short.");
       symb = -1;
     }
   } else {
@@ -368,45 +349,35 @@ void symbolize() {
       if (slope1 <= -0.7 && slope1 >= -3.15) { //slope is positive
         if (linePts2[0] > linePts2[2]) { //positive slope going down
           if (slope2 >= 0.7 && slope2 <= 3.15) { //negative slope
-            println(test += " 4 (\\/) --> 2");
             symb = 4;
           } else {
-            println(test += " Not valid symbol");
             symb = -1;
           }
         } else { //positive slope going up
           if (slope2 >= 0.7 && slope2 <= 3.15) { //negative slope
-            println(test += " 5 (/\\) --> 3");
             symb = 5;
           } else {
-            println(test += " Not valid symbol");
             symb = -1;
           }
         }
       } else if (slope1 >= 0.7 && slope1 <= 3.15) { //negative slope
         if (linePts2[0] < linePts2[2]) { //negative slope going downwards
           if (slope2 <= -0.7 && slope2 >= -3.15) { //positive slope
-            println(test += " 4 (\\/) --> 1");
             symb = 4;
           } else {
-            println(test += " Not valid symbol");
             symb = -1;
           }
         } else { //negative slope going upwards
           if (slope2 <= -0.7 && slope1 >= -3.15) { //positive slope
-            println(test += " 5 (/\\) --> 4");
             symb = 5;
           } else {
-            println(test += " Not valid symbol");
             symb = -1;
           }
         }
       } else {
-        println(test += " Not valid symbol");
         symb = -1;
       }
     } else {
-      println(test += " Not valid symbol");
     }
   }
   notLine = false;
@@ -421,7 +392,6 @@ void keyReleased() {
       linePts2[4] = xf2;
       linePts2[5] = yf2;
       alrPressed = false;
-      println(Arrays.toString(linePts2));
       notLine = true;
       symbolize();
       for (int i = 0; i < enemies.size(); i++) {
@@ -448,7 +418,7 @@ void homeScreen() {
   textSize(20);
   text("PLAY", (width / 2 + 100) + (250.0 / 2), (height / 2 - 130) + (100.0 / 2)); 
   text("HELP", (width / 2 + 100) + (250.0 / 2), (height / 2) + (100.0 / 2)); 
-
+  text("Michelle Lo and Reshmi Anwar (2021)", width / 2, height - 70); 
   if (! isHelp && mousePressed && mouseButton == LEFT && 
     (mouseX <= width / 2 + 100 + 250 && mouseX >= width / 2 + 100) &&
     (mouseY <= height / 2 - 130 + 100 && mouseY >= height / 2 - 130)) {
@@ -476,7 +446,6 @@ void homeScreen() {
 }
 
 void cutscene() {
-  //the next cutscene will play when the player presses the "n" key
   if (scene != 44) {
     image(textbox, width / 2, height - textbox.height + 50, textbox.width + 150, textbox.height + 50);
   }
@@ -503,7 +472,7 @@ void cutscene() {
     image(spaceship, 300, 300, 300, 200);
     text("Luna: (singing) Nyan Nyan Nyan Nyan~ ", 160, 600);
   } else if (scene == 5) {
-    cat.display();
+    image(spaceship, 300, 300, 300, 200);
     text("*BOOM*", 160, 600);
   } else if (scene == 6) {
     cat.display();
@@ -542,7 +511,6 @@ void cutscene() {
     text("Luna: Ny-o!!!", 160, 600);
   } else if (scene == 15) { //the first line of "after intro" scene 
     pinkBackground();
-    //scene++;
     toggleN = false;
     stage1 = true;
     totalDead = 0;
@@ -570,13 +538,11 @@ void cutscene() {
     image(panel, 300, 300, 200, 100);
     text("Luna: Thank you!", 160, 600);
   } else if (scene == 21) {
-    //toggleN = true;
     cat.display();
     whiskers.display();
     image(panel, 300, 300, 200, 100);
     text("Whiskers: Don’t thank me yet, you still have to learn your lesson", 160, 600);
-  } else if (scene == 22) { //last line of "after stage 1" scene
-    //scene++;
+  } else if (scene == 22) { 
     blueBackground();
     toggleN = false;
     stage2 = true; //start stage 2
@@ -615,7 +581,6 @@ void cutscene() {
     image(antennae, 300, 300, 100, 200);
     text("You still have to face the wrath of the More-Difficult-Stage-3!", 160, 600);
   } else if (scene == 30) {
-    //scene++;
     greenBackground();
     toggleN = false;
     stage3 = true; //start stage 3
@@ -695,6 +660,7 @@ void cutscene() {
 
 
 void keyPressed() {
+  /*
   //spawns 10 enemies
   if (keyCode == 83) { //s
     spawn(5, 3, -3, 7);
@@ -705,9 +671,9 @@ void keyPressed() {
     println("scene: " + scene);
     enemies.clear();
   }
+  */
   //pauses/resume music
   if (keyCode == 80) { //p
-    println("homePlaying: " + homePlaying);
     if (! homePlaying) {
       
       if (file.isPlaying()) {
@@ -723,12 +689,12 @@ void keyPressed() {
       }
     }
   }
-  
+  /*
   //to cheat;))
   if (keyCode == 72) { //h
     health = 300;
   }
-
+  
   //cheat code for instant win
   if (keyCode == 68) { //d
     totalDead = 30;
@@ -738,6 +704,7 @@ void keyPressed() {
   if (keyCode == 76) {
     health = 0;
   }
+  */
 
   //to advance scenes
   if (keyCode == 78) { //n
@@ -749,10 +716,6 @@ void keyPressed() {
     if (totalDead > -5 && toggleN) {
       scene++;
     }
-   
-    
-    println("scene: " + scene);
   }
 
-  println(keyCode);
 }

@@ -18,29 +18,10 @@ class Enemy {
   boolean retreating = false;
   
   //constructor
-  /*
-  Enemy() {
-    xPos = width / 2 + 100; //temp value
-    yPos = height / 2 ; //temp value
-    //charWidth = 120; //temporary values //125
-    //charHeight = 75; //75 
-    maxSize = 7; //subject to change
-    patternLen = (int) ((Math.random() * (maxSize)) + 1); //max is 7
-    pattern();
-    isDead = false;
-    float a = atan2(test.getY() - yPos, test.getX() - xPos);
-    float v = dist(0, 0, dx, dy);
-    dx = v * cos(a);
-    dy = v * sin(a);
-  }
-  */
   Enemy(float x, float y, float upper, float lower, float maxLen) {
     xPos = x;
     yPos = y;
-    //charWidth = 120; //temporary values
-    //charHeight = 75; 
-     
-    patternLen = (int) ((Math.random() * (maxLen)) + 1); //max is 7
+    patternLen = (int) ((Math.random() * (maxLen)) + 1);
     if (maxLen == 0) {
       patternLen = 0;
     }
@@ -64,7 +45,6 @@ class Enemy {
   //display() displays enemies
   void display() {
     image(galaxyCat, xPos, yPos, charWidth, charHeight);
-    //ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep enemy
     String str = "";
     for (int symbol : pattern) {
       String ch = "";
@@ -104,7 +84,7 @@ class Enemy {
   //move() moves the enemy towards the protag. It bounces off the protag when it touches it but comes back. 
   void move() {
     xPos += dx;
-    yPos += dy; //make sure to account for height
+    yPos += dy;
     if (retreating == false &&
         isTouching(xPos, yPos, charWidth, charHeight, test.getX(), test.getY(), test.getHeight(), test.getWidth())) {
       dx *= -4;

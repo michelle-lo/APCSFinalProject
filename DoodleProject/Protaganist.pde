@@ -9,14 +9,13 @@ class Protaganist {
   Protaganist() {
     xPos = width / 2;
     yPos = height / 2;
-    charWidth = 150; //temporary values
+    charWidth = 150; 
     charHeight = 100; 
   }
   
   //display() summons the protag on the screen.
   void display() {
     image(catCharacter, xPos, yPos, charWidth, charHeight);
-    //ellipse(xPos, yPos, charWidth, charHeight); //temporary ellipse to rep protag
   }
   
   float getX() {
