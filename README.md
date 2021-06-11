@@ -1,7 +1,6 @@
 # APCSFinalProject
 
 Group Name: The Data Duo
-/Users/michelle/Desktop/APCS/APCSFinalProject/README.md
 Group Members: Michelle Lo and Reshmi Anwar
 
 Prototype Link: https://docs.google.com/document/d/1DrXI50jfh32Y6TNM1hwQLIokbTJrvmXXLo5JlqfxhTo/edit?usp=sharing
@@ -11,8 +10,9 @@ Our group project will utilize processing to create an interactive game for user
 
 Directions:
 
-To run the game with music, import the Processing Foundation's Sound Library for Processing. To install, go to Sketch --> Import Library --> Add Library --> Type in "Sound" --> Select and Install.
-Go to the "help" tab for technical instructions and controls to play the game.
+1. To run the game with music, import the Processing Foundation's Sound Library for Processing. To install, go to Sketch --> Import Library --> Add Library --> Type in "Sound" --> Select and Install.
+2. Run the program.
+3. IMPORTANT: Go to the "help" tab for technical instructions and controls to play the game.
 
 
 
@@ -45,11 +45,11 @@ Michelle: Edited movement for enemies. Tweaked some methods that had to change d
 
 Reshmi: Debugged together and worked to add panels to feature dialogue that could be toggled on and off when playing the round. Found sources for background images/objects and began to code background music.
 
-Michelle:
+Michelle: Created the home interface with original assets. Worked on implementing cutscenes. Debugged with Reshmi.
 
 
 6/10/21:
 
 Reshmi: Finished cutscenes by adding dialogue, background changes, character exits, and the tools that needed to be collected (panel, antenna, propane). Added background music, pause/play keys, and updated instructions.
 
-Michelle:
+Michelle: Added two different music for the home screen and the game. Cleaned up our final product (cleaning up code, altering some numbers, fixing a small bug). Added the ability for the player to choose difficulty (only a matter of changing number of initial lives).
