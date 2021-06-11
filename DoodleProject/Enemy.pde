@@ -18,6 +18,7 @@ class Enemy {
   boolean retreating = false;
   
   //constructor
+  /*
   Enemy() {
     xPos = width / 2 + 100; //temp value
     yPos = height / 2 ; //temp value
@@ -32,7 +33,7 @@ class Enemy {
     dx = v * cos(a);
     dy = v * sin(a);
   }
-  
+  */
   Enemy(float x, float y, float upper, float lower, float maxLen) {
     xPos = x;
     yPos = y;
@@ -40,6 +41,9 @@ class Enemy {
     //charHeight = 75; 
      
     patternLen = (int) ((Math.random() * (maxLen)) + 1); //max is 7
+    if (maxLen == 0) {
+      patternLen = 0;
+    }
     pattern();
     isDead = false;
     dx = random(lower, upper + 1);
